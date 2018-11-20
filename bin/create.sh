@@ -12,7 +12,7 @@ printf "$INFO_SLUG Initializing repository...\n"
 git init .
 
 git add .
-git commit -m "Initial commit"
+git commit -q -m "Initial commit"
 
 #
 # Clone/merge Particle repo into current directory.
@@ -26,7 +26,7 @@ git fetch origin master
 # Allow Particle to overwrite any conflicting local files.
 git merge origin/master --allow-unrelated-histories --squash --strategy-option theirs
 git add .
-git commit -m "Merged Particle"
+git commit -q -m "Merged Particle"
 git remote remove origin
 
 #
@@ -39,9 +39,9 @@ git fetch origin 8.x-4.x
 # Allow merging from a different history.
 # Throw away the remote commit log history.
 # Allow Octane to overwrite any conflicting local files.
-git merge origin/8.x-4.x --allow-unrelated-histories --squash --strategy-option theirs
+git merge origin/8.x-4.x -q --allow-unrelated-histories --squash --strategy-option theirs
 git add .
-git commit -m "Merged Octane"
+git commit -q -m "Merged Octane"
 git remote remove origin
 
 # Change remote of repo to specific project.
