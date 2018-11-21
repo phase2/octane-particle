@@ -1,6 +1,3 @@
-# Packages
-/packages
-
 # Files produced by bad patch & diff runs
 *~*~
 *.rej

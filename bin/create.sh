@@ -12,12 +12,15 @@ mkdir packages
 git clone git@github.com:phase2/particle.git packages/particle
 git clone git@github.com:phase2/octane.git packages/octane
 
-# Run any generators.
-for package in bin/generators/*
+# Scaffold the packages.
+for package in bin/scaffold/*
 do
-  printf "$INFO_SLUG Generating ${package}...\n"
+  printf "$INFO_SLUG Scaffolding ${package}...\n"
   ${package}
 done
+
+# Run generators
+npm install --save-dev yo yeoman-generator
 
 printf "$INFO_SLUG Initializing repository...\n"
 git init .
