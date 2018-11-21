@@ -14,6 +14,6 @@ done
 
 printf "$INFO_SLUG Merging scripts...\n"
 cp -R packages/octane/src/ src/
-rsync -abuP packages/octane/.docksal/commands/ .docksal/commands/
-rsync -abuP packages/octane/.docksal/addons/ .docksal/addons/
-rsync -abuP packages/octane/bin/ bin/
+rsync -a packages/octane/.docksal/commands/ .docksal/commands/
+rsync -a packages/octane/.docksal/addons/ .docksal/addons/
+rsync -a packages/octane/bin/ bin/
