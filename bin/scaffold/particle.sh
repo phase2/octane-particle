@@ -17,7 +17,8 @@ copy_files=(
 printf "$INFO_SLUG Copying files for Particle...\n"
 for file in "${copy_files[@]}"
 do
-  cp package/particle/${file} .
+  cp packages/particle/${file} .
 done
 
-cp -R package/particle/apps/drupal src/themes/particle
+mkdir -p src/themes/particle
+cp -R packages/particle/apps/drupal/ src/themes/particle/
