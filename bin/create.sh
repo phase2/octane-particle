@@ -8,15 +8,15 @@ if [ -e ".git" ]; then
 fi
 
 # Download packages.
+mkdir packages
 git clone git@github.com:phase2/particle.git packages/particle
 git clone git@github.com:phase2/octane.git packages/octane
 
 # Run any generators.
-generators=`ls bin/generators`
-for package in "${generators[@]}"
+for package in bin/generators/*
 do
   printf "$INFO_SLUG Generating ${package}...\n"
-  bin/generators/${package}
+  ${package}
 done
 
 printf "$INFO_SLUG Initializing repository...\n"
