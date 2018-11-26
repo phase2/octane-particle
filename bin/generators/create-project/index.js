@@ -24,6 +24,10 @@ const prompts = [
       return answer.replace(/ /g, '-').toLowerCase();
     },
   },
+  {
+    name: 'repo',
+    message: 'Repository url ?',
+  },
 ];
 
 module.exports = class extends Generator {
@@ -43,19 +47,22 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    // Copy all non-dotfiles from templates.
+    const options = {
+      // Don't warn if there aren't any template files to copy.
+      ignoreNoMatch: true,
+      // Also match files that start with a dot.
+      globOptions: {
+        dot: true
+      }
+    };
+    // Copy all files from templates.
     this.fs.copyTpl(
       this.templatePath('**/*'),
       this.destinationRoot(),
-      this.props
+      this.props,
+      {},
+      options
     );
-
-    // Copy all dotfiles from templates.
-    this.fs.copyTpl(
-      this.templatePath('**/.*'),
-      this.destinationRoot(),
-      this.props
-    );
-
   }
+
 };

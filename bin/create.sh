@@ -20,10 +20,19 @@ do
 done
 
 # Run generators
-npm install --save-dev yo yeoman-generator
+printf "$INFO_SLUG Running generators...\n"
+if [ ! -e "node_modules/.bin/yo" ]; then
+  npm install --save-dev yo yeoman-generator
+fi
+./node_modules/.bin/yo ./bin/generators/create-project/index.js
 
-printf "$INFO_SLUG Initializing repository...\n"
-git init .
-bin/repo.sh
+# Pull in any environment variables set by generators.
+source .env
 
-
+if [[ ${PROJECT_REPO} != "" ]]; then
+  printf "$INFO_SLUG Initializing repository...\n"
+  git init .
+  bin/repo.sh ${PROJECT_REPO}
+else
+  printf "$INFO_SLUG Set your repo later using: 'bin/repo.sh REPOSITORY-URL'\n"
+fi
