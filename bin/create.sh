@@ -10,7 +10,7 @@ fi
 # Download packages.
 mkdir packages
 git clone git@github.com:phase2/particle.git packages/particle
-git clone git@github.com:phase2/octane.git packages/octane
+git clone -b feature/particle git@github.com:phase2/octane.git packages/octane
 
 # Scaffold the packages.
 for package in bin/scaffold/*
